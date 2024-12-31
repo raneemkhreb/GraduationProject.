@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض الوظائف والمتقدمين</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f9;
+            overflow-x: hidden;
+        }
+
+         /* السلايد بار */
+    .sidebar {
+        height: 100vh;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: #343a40;
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sidebar a {
+        text-decoration: none;
+        font-size: 16px;
+        color: #ddd;
+        padding: 15px 20px;
+        width: 100%;
+        text-align: right;
+    }
+
+    .sidebar a:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .sidebar i {
+        margin-left: 10px;
+    }
+
+    /* محتوى الصفحة */
+    .main-content {
+        margin-right: 250px; /* يراعي وجود السلايد بار */
+        padding: 20px;
+        background-color: #f9f9f9;
+        min-height: 100vh;
+    }
+
+    .main-content h2 {
+        color: #003366;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* تحسين الجدول */
+    .table {
+        border-collapse: separate;
+        border-spacing: 0 10px;
+        width: 100%;
+    }
+
+    .table th,
+    .table td {
+        padding: 12px 15px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .table th {
+        background-color: #003366;
+        color: #fff;
+        font-weight: bold;
+        text-transform: uppercase;
+        border: none;
+    }
+
+    .table td {
+        background-color: #ffffff;
+        color: #333;
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-hover tbody tr:hover td {
+        background-color: #e6f0ff;
+    }
+
+    .btn {
+        border-radius: 25px;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 5px 20px;
+    }
+
+    .btn.toggle-publish {
+        background: linear-gradient(135deg, #007bff 0%, #003366 100%);
+        color: white;
+    }
+
+    .btn.toggle-publish:hover {
+        background: linear-gradient(135deg, #0056b3 0%, #001a40 100%);
+    }
+    </style>
+</head>
+
+<body>
+    <!-- شريط جانبي ثابت -->
+    <div class="sidebar">
+        <h3 class="text-center text-light">بوابة الانتخاب</h3>
+        <a href="allvolunteet.html"><i class="fas fa-boxes"></i> كل الحملات التطوعية </a>
+        <a href="allehction.html"><i class="fas fa-users"></i> كل المرشحين  </a>
+
+        <a href="addNewStudent.html"><i class="fas fa-user-plus "></i> إضافة طالب جديد </a>
+
+    </div>
+    <div class="main-content">
+        <div class="container mt-5">
+            <div class="card shadow-sm border-0 p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="text-center mb-0" style="color: #003366;">الحملات التطوعية</h2>
+                    <button class="btn btn-success" id="addCampaignButton">
+                        إضافة حملة جديدة
+                    </button>
+                 
+                        <!-- <button id="export-to-excel" class="btn btn-success">تحميل إلى Excel</button> -->
+    
+                        <button id="export-to-excel" class="btn btn-success">تحميل كل التفاصيل إلى Excel</button>
+
+                </div>
+                <table class="table table-hover table-striped">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>رقم الحملة</th>
+                            <th>اسم الحملة</th>
+                            <th>الوصف</th>
+                            <th>حالة النشر</th>
+                            <th>إجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="campaigns-table">
+                        <!-- سيتم إضافة الصفوف ديناميكياً -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="addCampaignModal" tabindex="-1" aria-labelledby="addCampaignModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCampaignModalLabel">إضافة حملة جديدة</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="addCampaignForm">
+                        <div class="mb-3">
+                            <label for="newCampaignName" class="form-label">اسم الحملة</label>
+                            <input type="text" class="form-control" id="newCampaignName" name="campaignName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newCampaignDescription" class="form-label">وصف الحملة</label>
+                            <textarea class="form-control" id="newCampaignDescription" name="campaignDescription" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">إضافة</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+     
+
+
+    <div class="modal fade" id="editCampaignModal" tabindex="-1" aria-labelledby="editCampaignModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCampaignModalLabel">تعديل الحملة</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCampaignForm">
+                        <div class="mb-3">
+                            <label for="campaignName" class="form-label">اسم الحملة</label>
+                            <input type="text" class="form-control" id="campaignName" name="campaignName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="campaignDescription" class="form-label">وصف الحملة</label>
+                            <textarea class="form-control" id="campaignDescription" name="campaignDescription" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">حفظ التعديلات</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="modal fade" id="studentsModal" tabindex="-1" aria-labelledby="studentsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="studentsModalLabel">الطلاب المشاركون</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul id="studentsList" class="list-group">
+                        <!-- سيتم إضافة أسماء الطلاب ديناميكياً -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+
+    <script>
+       
+       document.addEventListener("DOMContentLoaded", async () => {
+    const apiUrl = "http://localhost:5144/api/volunteerCampaign";
+    const campaignsContainer = document.getElementById("campaigns-table");
+    
+
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error("Failed to fetch campaigns.");
+        }
+
+        const campaigns = await response.json();
+
+        campaigns.forEach((campaign) => {
+            const row = `
+                <tr>
+                    <td>${campaign.campaignId}</td>
+                    <td>${campaign.campaignName}</td>
+                    <td>${campaign.campaignDescription}</td>
+                    <td>${campaign.isPublished ? "نُشرت" : "غير منشورة"}</td>
+                                     <td>
+                        <button class="btn toggle-publish" data-id="${campaign.campaignId}" data-published="${campaign.isPublished}">
+                            ${campaign.isPublished ? "إلغاء النشر" : "نشر"}
+                        </button>
+                        <button class="btn btn-primary edit-campaign" data-id="${campaign.campaignId}" data-name="${campaign.campaignName}" data-description="${campaign.campaignDescription}">
+                            تعديل
+                        </button>
+                          <button class="btn btn-danger delete-campaign" data-id="${campaign.campaignId}">
+                           حذف
+                          </button>
+                            <button class="btn btn-info view-students" data-id="${campaign.campaignId}">
+                         الطلاب المشاركون
+                         </button>
+                    </td>
+
+
+                </tr>
+            `;
+            campaignsContainer.innerHTML += row;
+        });
+
+        // إضافة مستمع للأزرار
+        document.querySelectorAll(".toggle-publish").forEach((button) => {
+            button.addEventListener("click", async (event) => {
+                const campaignId = event.target.getAttribute("data-id");
+                const isPublished = event.target.getAttribute("data-published") === "true";
+                
+                try {
+                    debugger
+                    const formData = new FormData();
+                    formData.append("isPublished", !isPublished);
+
+                    const response = await fetch(`http://localhost:5144/api/volunteerCampaign/publish/${campaignId}`, {
+                        method: "POST",
+                        body: formData,
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        Swal.fire({
+                            title: "تم التحديث",
+                            text: `تم ${result.IsPublished ? "نشر" : "إلغاء نشر"} الحملة بنجاح.`,
+                            icon: "success",
+                            confirmButtonText: "حسناً",
+                        });
+                        window.location.reload(); // تحديث الصفحة
+                    } else {
+                        const errorMessage = await response.text();
+                        Swal.fire("خطأ", errorMessage || "حدث خطأ أثناء التحديث.", "error");
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                    Swal.fire("خطأ", "حدث خطأ أثناء الاتصال بالخادم.", "error");
+                }
+            });
+        });
+
+
+
+        document.querySelectorAll(".edit-campaign").forEach((button) => {
+            button.addEventListener("click", (event) => {
+                debugger
+                const campaignId = event.target.getAttribute("data-id");
+                const campaignName = event.target.getAttribute("data-name");
+                const campaignDescription = event.target.getAttribute("data-description");
+
+                // ملء الحقول بالنصوص الحالية
+                document.getElementById("campaignName").value = campaignName;
+                document.getElementById("campaignDescription").value = campaignDescription;
+
+                // حفظ الحملة المعدلة عند تقديم النموذج
+                const form = document.getElementById("editCampaignForm");
+                form.onsubmit = async (e) => {
+                    e.preventDefault();
+
+                    const formData = new FormData(form);
+
+                    try {
+                        const response = await fetch(`http://localhost:5144/api/volunteerCampaign/put${campaignId}`, {
+                            method: "PUT",
+                            body: formData,
+                        });
+
+                        if (response.ok) {
+                            Swal.fire({
+                                title: "تم التحديث",
+                                text: "تم تعديل الحملة بنجاح.",
+                                icon: "success",
+                                confirmButtonText: "حسناً",
+                            });
+                            window.location.reload(); // تحديث الصفحة
+                        } else {
+                            const errorMessage = await response.text();
+                            Swal.fire("خطأ", errorMessage || "حدث خطأ أثناء التحديث.", "error");
+                        }
+                    } catch (error) {
+                        console.error("Error:", error);
+                        Swal.fire("خطأ", "حدث خطأ أثناء الاتصال بالخادم.", "error");
+                    }
+                };
+
+                // عرض النموذج
+                const editCampaignModal = new bootstrap.Modal(document.getElementById("editCampaignModal"));
+                editCampaignModal.show();
+            });
+        });
+
+
+
+
+        document.querySelectorAll(".delete-campaign").forEach((button) => {
+    button.addEventListener("click", async (event) => {
+        const campaignId = event.target.getAttribute("data-id");
+
+        // تأكيد الحذف
+        const confirmation = await Swal.fire({
+            title: "هل أنت متأكد؟",
+            text: "سيتم حذف الحملة بشكل نهائي!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "نعم، احذفها",
+            cancelButtonText: "إلغاء",
+        });
+
+        if (confirmation.isConfirmed) {
+            try {
+                const response = await fetch(`http://localhost:5144/api/volunteerCampaign/Delete${campaignId}`, {
+                    method: "DELETE",
+                });
+
+                if (response.ok) {
+                    Swal.fire({
+                        title: "تم الحذف",
+                        text: "تم حذف الحملة بنجاح.",
+                        icon: "success",
+                        confirmButtonText: "حسناً",
+                    });
+
+                    // إزالة الصف من الجدول
+                    event.target.closest("tr").remove();
+                } else {
+                    const errorMessage = await response.text();
+                    Swal.fire("خطأ", errorMessage || "حدث خطأ أثناء حذف الحملة.", "error");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                Swal.fire("خطأ", "حدث خطأ أثناء الاتصال بالخادم.", "error");
+            }
+        }
+    });
+});
+
+
+
+
+
+
+// عرض النموذج عند الضغط على زر "إضافة حملة جديدة"
+document.getElementById("addCampaignButton").addEventListener("click", () => {
+    const addCampaignModal = new bootstrap.Modal(document.getElementById("addCampaignModal"));
+    addCampaignModal.show();
+});
+
+// إرسال النموذج لإنشاء حملة جديدة
+document.getElementById("addCampaignForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    try {
+        const response = await fetch("http://localhost:5144/api/volunteerCampaign/add", {
+            method: "POST",
+            body: formData,
+        });
+
+        if (response.ok) {
+            Swal.fire({
+                title: "تمت الإضافة",
+                text: "تمت إضافة الحملة بنجاح.",
+                icon: "success",
+                confirmButtonText: "حسناً",
+            });
+
+            // إغلاق النافذة المنبثقة
+            const addCampaignModal = bootstrap.Modal.getInstance(document.getElementById("addCampaignModal"));
+            addCampaignModal.hide();
+
+            // إعادة تحميل الصفحة أو تحديث الجدول
+            const newCampaign = await response.json();
+            const newRow = `
+                <tr>
+                    <td>${newCampaign.campaignId}</td>
+                    <td>${newCampaign.campaignName}</td>
+                    <td>${newCampaign.campaignDescription}</td>
+                    <td>غير منشورة</td>
+                    <td>
+                        <button class="btn toggle-publish" data-id="${newCampaign.campaignId}" data-published="false">نشر</button>
+                        <button class="btn btn-primary edit-campaign" data-id="${newCampaign.campaignId}" data-name="${newCampaign.campaignName}" data-description="${newCampaign.campaignDescription}">تعديل</button>
+                        <button class="btn btn-danger delete-campaign" data-id="${newCampaign.campaignId}">حذف</button>
+                      <button class="btn btn-info view-students" data-id="${newCampaign.campaignId}">
+                         الطلاب المشاركون
+                         </button>
+                </td>
+                </tr>
+            `;
+            document.getElementById("campaigns-table").innerHTML += newRow;
+        } else {
+            const errorMessage = await response.text();
+            Swal.fire("خطأ", errorMessage || "حدث خطأ أثناء إضافة الحملة.", "error");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        Swal.fire("خطأ", "حدث خطأ أثناء الاتصال بالخادم.", "error");
+    }
+});
+
+
+
+
+document.querySelectorAll(".view-students").forEach((button) => {
+    button.addEventListener("click", async (event) => {
+        const campaignId = event.target.getAttribute("data-id");
+debugger
+        try {
+            const response = await fetch(`http://localhost:5144/api/VolunteerApplications/students/${campaignId}`);
+            if (!response.ok) {
+                throw new Error("Failed to fetch students.");
+            }
+
+            const data = await response.json();
+            const studentsList = document.getElementById("studentsList");
+            studentsList.innerHTML = ""; // تفريغ القائمة السابقة
+
+         
+                data.forEach((student) => {
+                    const listItem = document.createElement("li");
+                    listItem.className = "list-group-item";
+                    listItem.textContent = `اسم الطالب: ${student.name} - الرقم الجامعي: ${student.universityNumber}`;
+                    studentsList.appendChild(listItem);
+                });
+           
+
+            const studentsModal = new bootstrap.Modal(document.getElementById("studentsModal"));
+            studentsModal.show();
+        } catch (error) {
+            console.error("Error fetching students:", error);
+            Swal.fire("خطأ", "حدث خطأ أثناء جلب بيانات الطلاب.", "error");
+        }
+    });
+});
+
+
+    } catch (error) {
+        console.error("Error:", error);
+        Swal.fire({
+            title: "خطأ",
+            text: "حدث خطأ أثناء جلب البيانات. الرجاء المحاولة لاحقاً.",
+            icon: "error",
+            confirmButtonText: "حسناً",
+        });
+    }
+});
+
+// document.getElementById("export-to-excel").addEventListener("click", async () => {
+//     const apiUrl = "http://localhost:5144/api/volunteerCampaign";
+
+//     try {
+//         const response = await fetch(apiUrl);
+//         if (!response.ok) {
+//             throw new Error("Failed to fetch campaigns.");
+//         }
+
+//         const campaigns = await response.json();
+
+//         // Map campaigns to Excel-compatible data
+//         const excelData = campaigns.map(campaign => ({
+//             "Campaign ID": campaign.campaignId,
+//             "Campaign Name": campaign.campaignName,
+//             "Campaign Description": campaign.campaignDescription,
+//             "Status": campaign.isPublished ? "نُشرت" : "غير منشورة"
+//         }));
+
+//         // Create a new workbook and worksheet
+//         const worksheet = XLSX.utils.json_to_sheet(excelData);
+//         const workbook = XLSX.utils.book_new();
+//         XLSX.utils.book_append_sheet(workbook, worksheet, "Campaigns");
+
+//         // Save the Excel file
+//         XLSX.writeFile(workbook, "Campaigns_Details.xlsx");
+//     } catch (error) {
+//         console.error("Error exporting to Excel:", error);
+//         Swal.fire("خطأ", "حدث خطأ أثناء تصدير البيانات إلى Excel.", "error");
+//     }
+// });
+
+
+document.getElementById("export-to-excel").addEventListener("click", async () => {
+    const apiUrlCampaigns = "http://localhost:5144/api/volunteerCampaign";
+    const apiUrlStudents = "http://localhost:5144/api/VolunteerApplications/students";
+debugger
+    try {
+        // Fetch campaigns
+        const campaignsResponse = await fetch(apiUrlCampaigns);
+        if (!campaignsResponse.ok) {
+            throw new Error("Failed to fetch campaigns.");
+        }
+
+        const campaigns = await campaignsResponse.json();
+
+        // Prepare Excel data
+        const excelData = [];
+
+        for (const campaign of campaigns) {
+            // Fetch students for each campaign
+            const studentsResponse = await fetch(`${apiUrlStudents}/${campaign.campaignId}`);
+            if (!studentsResponse.ok) {
+                throw new Error(`Failed to fetch students for campaign ${campaign.campaignId}`);
+            }
+
+            const students = await studentsResponse.json();
+
+            if (students.length === 0) {
+                // Add campaign row without students
+                excelData.push({
+                    "Campaign ID": campaign.campaignId,
+                    "Campaign Name": campaign.campaignName,
+                    "Campaign Description": campaign.campaignDescription,
+                    "Status": campaign.isPublished ? "نُشرت" : "غير منشورة",
+                    "Student Name": "لا يوجد",
+                    "University Number": "لا يوجد"
+                });
+            } else {
+                // Add rows for each student
+                students.forEach(student => {
+                    excelData.push({
+                        "Campaign ID": campaign.campaignId,
+                        "Campaign Name": campaign.campaignName,
+                        "Campaign Description": campaign.campaignDescription,
+                        "Status": campaign.isPublished ? "نُشرت" : "غير منشورة",
+                        "Student Name": student.name,
+                        "University Number": student.universityNumber
+                    });
+                });
+            }
+        }
+
+        // Create Excel file
+        const worksheet = XLSX.utils.json_to_sheet(excelData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Campaign Details");
+
+        // Save Excel file
+        XLSX.writeFile(workbook, "Campaigns_with_Students.xlsx");
+
+        Swal.fire({
+            title: "تم التصدير",
+            text: "تم تصدير التفاصيل إلى ملف Excel بنجاح.",
+            icon: "success",
+            confirmButtonText: "حسناً",
+        });
+    } catch (error) {
+        console.error("Error exporting to Excel:", error);
+        Swal.fire("خطأ", "حدث خطأ أثناء تصدير البيانات إلى Excel.", "error");
+    }
+});
+
+
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
