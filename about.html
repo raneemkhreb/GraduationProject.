@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>eLEARNING - eLearning HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+ <!-- Navbar Start -->
+ <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+    <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <h2 class="m-0 text-primary">
+            <h2 class="m-0" style="color: #003366;">
+
+            <i class="fa fa-file-alt me-2"></i> بوابة الانتخاب
+        </h2>
+    </a>
+
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="contact.html" class="nav-item nav-link" style="color: black;">تواصل معنا</a>
+
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="color: black;">حول الانتخابات</a>
+                <div class="dropdown-menu fade-down m-0">
+                    <a href="Vote.html" class="dropdown-item" style="color: black;">انتخب</a>
+                    <a href="form_elections.html" class="dropdown-item" style="color: black;">ترشيح للانتخابات</a>
+                    <a href="Result.html" class="dropdown-item" style="color: black;">النتائج</a>
+                </div>
+            </div>
+
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="color: black;">حول الأعمال التطوعية</a>
+                <div class="dropdown-menu fade-down m-0">
+                    <a href="Volunteer_campaigns.html" class="dropdown-item" style="color: black;">الحملات التطوعية</a>
+                    <a href="form_Volunteer.html" class="dropdown-item" style="color: black;">تقديم لحملة تطوعية</a>
+                </div>
+            </div>
+
+            <a href="Candidates.html" class="nav-item nav-link" style="color: black;">جميع المرشحين</a>
+            <a href="about.html" class="nav-item nav-link" style="color: black;">معلومات عنا</a>
+            <a href="index.html" class="nav-item nav-link active" style="color: black;">الصفحة الرئيسية</a>
+
+            <a href="login.html" class="btn py-4 px-lg-5 d-none d-lg-block" id="loginButton" style="background: linear-gradient(to right, #ffffff, #b3c7d9); color: #003366; border: none;">
+              تسجيل الدخول<i class="fa fa-arrow-right ms-3"></i>
+          </a>
+          
+
+          <!-- قائمة البروفايل -->
+          <div class="nav-item dropdown" id="profileDropdown" style="display: none;">
+              <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #003366;">
+                  <i class="fa fa-user-circle fa-2x"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="profile.html">الملف الشخصي</a></li>
+                  <li><a class="dropdown-item" href="#" id="logout">تسجيل الخروج</a></li>
+              </ul>
+          </div>
+          </div>
+    </div>
+</nav>
+<!-- Navbar End -->
+
+
+
+
+   <!-- Header Start -->
+  <!-- تأكد من أنك قد أضفت رابط مكتبة FontAwesome في <head> -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<div class="container-fluid bg-primary py-5 mb-5 page-header"
+    style="background-image: url('img/حول.jpg'); background-size: cover; background-position: center; height: 70vh; width: 100%; position: relative;">
+    <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(0, 0, 0, 0.8);">
+    </div>
+    <div class="container py-5 position-relative">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+                <!-- عنوان رئيسي مع حجم أصغر -->
+                <h1 class="text-white animated slideInDown" style="font-size: 2.5rem; font-weight: bold; text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);">
+                    مرحباً بكم في موقع الانتخابات والأعمال التطوعية
+                </h1>
+                <!-- نص توضيحي أصغر حجمًا -->
+                <p class="text-white animated slideInDown" style="font-size: 1.2rem; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); margin-top: 15px;">
+                    اكتشف فرص المشاركة في الانتخابات والمبادرات التطوعية التي تهمك. معاً نصنع التغيير! 
+                    <i class="fas fa-user-graduate" style="font-size: 1.5rem; margin-left: 5px;"></i>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                <div class="position-relative" style="width: 100%; height: 90vh; overflow: hidden;">
+                    <img class="img-fluid position-absolute w-100 h-100" src="https://w1.pngwing.com/pngs/954/168/png-transparent-voting-communication-election-ballot-polling-place-suffrage-electoral-system-open-list-presidential-election.png" alt="صورة توضيحية" style="object-fit: cover; width: 100%; height: 100%; max-width: none; max-height: none;">
+                </div>
+                
+                
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s" style="text-align: right;">
+                <h1 class="mb-4">معلومات عنا</h1>
+                <p class="mb-4">مرحبًا بكم في بوابة الانتخابات الطلابية وحملات التطوع بجامعة الزرقاء!</p>
+                <p class="mb-4">
+                    نحن في جامعة الزرقاء نؤمن بأن تمكين الطلاب هو أساس بناء مجتمع قوي ومؤثر. تعمل منصتنا كحلقة وصل مركزية للمعلومات والمشاركة في الانتخابات الطلابية والمبادرات التطوعية، مما يتيح لك فرصة التأثير الفعّال على مجرى الأحداث في الجامعة.
+                </p>
+                <h3 class="mb-3">مهمتنا</h3>
+                <p class="mb-4">
+                    نسعى جاهدين لتعزيز ثقافة ديمقراطية نابضة بالحياة، حيث يُتاح لكل طالب التعبير عن رأيه والمشاركة بفاعلية. من خلال الانخراط في الانتخابات والحملات التطوعية، يمكنك التأثير على سياسات الجامعة، وتعزيز الروابط مع زملائك، والمساهمة في خلق بيئة تعليمية مثمرة.
+                </p>
+                <h3 class="mb-3">ما نقدمه</h3>
+                <div class="row gy-2 gx-4 mb-4">
+                    <div class="col-sm-6">
+                        <p class="mb-0" style="position: relative;">
+                            <i class="fa fa-arrow-right text-primary me-2" style="line-height: 1.5;"></i>
+                            عمليات انتخابية شفافة: نضمن إجراء انتخابات عادلة ومفتوحة تشجع جميع الطلاب على التواصل مع المرشحين وفهم منصاتهم.
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-0" style="position: relative;">
+                            <i class="fa fa-arrow-right text-primary me-2" style="line-height: 1.5;"></i>
+                            فرص التطوع: استكشف مجموعة من المشاريع التي تمكّنك من رد الجميل للمجتمع، وتطوير مهارات جديدة، والتعرف على أفراد يشاركونك نفس الاهتمامات.
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-0" style="position: relative;">
+                            <i class="fa fa-arrow-right text-primary me-2" style="line-height: 1.5;"></i>
+                            تنمية المهارات: من خلال المشاركة الفعالة، ستكتسب خبرات قيمة في القيادة، والعمل الجماعي، والمسؤولية المدنية.
+                        </p>
+                    </div>
+                </div>
+                <h3 class="mb-3">انضم إلينا!</h3>
+                <p class="mb-4">شارك في هذا الجهد وعبّر عن صوتك. معًا، يمكننا بناء مجتمع طلابي نابض بالحياة وديناميكي في جامعة الزرقاء.</p>
+            </div>
+
+
+    <div class="container">
+      <h2 class="mb-4 text-end"> الانتخابات الحملات التطوعيه </h2>
+      <p class="lead text-end">
+        نرحب بكم في منصتنا الإلكترونية المبتكرة التي تهدف إلى تمكين طلاب جامعة الزرقاء من المشاركة بفعالية في الانتخابات الطلابية وتنظيم حملات تطوعية. 
+        نسعى من خلال هذا المشروع إلى تعزيز الروح القيادية والتعاون بين الطلاب ودعم تنمية مجتمع الجامعة.
+      </p>
+      <h2 class="text-end mb-4">كيفية استخدام المنصة للانتخابات </h2>
+      <div class="accordion text-end" id="usageGuide">
+        <div class="accordion" id="usageGuide">
+  <!-- أزرار التحكم -->
+  <div class="accordion-item">
+    <h3 class="accordion-header text-end" id="headingOne">
+      <div class="d-flex justify-content-end">
+        <!-- زر الترشح -->
+        <button class="accordion-button collapsed text-end" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="background-color: white; color: #003366; border: 1px solid #003366; direction: rtl;">
+          الترشح للانتخابات
+        </button>
+        <!-- زر التصويت -->
+        <button class="accordion-button collapsed text-end ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="background-color: white; color: #003366; border: 1px solid #003366; direction: rtl;">
+          التصويت
+        </button>
+      </div>
+    </h3>
+
+    <!-- قسم الترشح -->
+    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#usageGuide">
+      <div class="accordion-body text-end" style="background-color: #ffffff; border: 2px solid #003366; border-radius: 8px; padding: 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+        <ul style="list-style-type: none; padding: 0; margin: 0; font-size: 16px;">
+          <li style="margin-bottom: 10px;">قم بتسجيل الدخول إلى المنصة باستخدام حسابك الجامعي</li>
+          <li style="margin-bottom: 10px;">انتقل إلى قسم <strong>الانتخابات</strong></li>
+          <li style="margin-bottom: 10px;">اضغط على خيار <strong>الترشح</strong></li>
+          <li style="margin-bottom: 10px;">قم بتعبئة استمارة الترشح بالمعلومات المطلوبة</li>
+          <li style="margin-bottom: 10px;">أرسل طلب الترشح</li>
+          <li>ستتم مراجعة طلبك من قبل الإدارة وسيتم إشعارك عند قبوله</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- قسم التصويت -->
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#usageGuide">
+      <div class="accordion-body text-end" style="background-color: #ffffff; border: 2px solid #003366; border-radius: 8px; padding: 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+        <ul style="list-style-type: none; padding: 0; margin: 0; font-size: 16px;">
+          <li style="margin-bottom: 10px;">قم بتسجيل الدخول إلى المنصة باستخدام حسابك الجامعي</li>
+          <li style="margin-bottom: 10px;">انتقل إلى قسم <strong>الانتخابات</strong></li>
+          <li style="margin-bottom: 10px;">اختر <strong>التصويت</strong> للمشاركة في الانتخابات</li>
+          <li style="margin-bottom: 10px;">اختر المرشح الذي ترغب في التصويت له من القائمة</li>
+          <li style="margin-bottom: 10px;">اضغط على زر <strong>التصويت</strong></li>
+          <li>تم إرسال تصويتك، وسيتم حساب الأصوات بعد انتهاء فترة التصويت.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+          <section class="py-5 text-center">
+            <div class="container">
+              <!-- العنوان مع الأيقونة -->
+              <div class="d-flex align-items-center justify-content-center mb-4">
+                <i class="bi bi-person-lines-fill" style="font-size: 3rem; color: #003366; margin-left: 10px;"></i>
+                <h2 class="text-primary" style="color: black !important; background-color: white; padding: 5px 15px; border-radius: 8px;">
+                    سجل الآن لتكون جزءًا من عملية التغيير وصنع القرار داخل الجامعة
+                  </h2>
+                  
+              </div>
+          
+              <!-- التعداد -->
+              <ul class="text-end list-unstyled" style="font-size: 1.2rem; line-height: 1.8;">
+                <li class="mb-2" style="direction: rtl;">
+                  <strong style="background: linear-gradient(135deg, #003366 25%, #ADD8E6 25%, #ADD8E6 50%, #003366 50%, #003366 75%, #ADD8E6 75%); -webkit-background-clip: text; color: transparent;">
+                    1.
+                  </strong> الترشح يتيح لك فرصة لتطوير قدراتك في القيادة والتواصل وإدارة الفرق.
+                </li>
+                <li class="mb-2" style="direction: rtl;">
+                  <strong style="background: linear-gradient(135deg, #003366 25%, #ADD8E6 25%, #ADD8E6 50%, #003366 50%, #003366 75%, #ADD8E6 75%); -webkit-background-clip: text; color: transparent;">
+                    2.
+                  </strong> كن الجسر الذي ينقل احتياجات وأفكار زملائك إلى إدارة الجامعة.
+                </li>
+                <li class="mb-2" style="direction: rtl;">
+                  <strong style="background: linear-gradient(135deg, #003366 25%, #ADD8E6 25%, #ADD8E6 50%, #003366 50%, #003366 75%, #ADD8E6 75%); -webkit-background-clip: text; color: transparent;">
+                    3.
+                  </strong> خبرتك كقائد طلابي ستضيف قيمة كبيرة لسيرتك الذاتية المهنية.
+                </li>
+                <li class="mb-2" style="direction: rtl;">
+                  <strong style="background: linear-gradient(135deg, #003366 25%, #ADD8E6 25%, #ADD8E6 50%, #003366 50%, #003366 75%, #ADD8E6 75%); -webkit-background-clip: text; color: transparent;">
+                    4.
+                  </strong> العمل في المجلس الطلابي يساعدك على التواصل مع طلاب من تخصصات وخلفيات مختلفة.
+                </li>
+                <li class="mb-2" style="direction: rtl;">
+                  <strong style="background: linear-gradient(135deg, #003366 25%, #ADD8E6 25%, #ADD8E6 50%, #003366 50%, #003366 75%, #ADD8E6 75%); -webkit-background-clip: text; color: transparent;">
+                    5.
+                  </strong> الانتخابات تضيف بعدًا جديدًا لتجربتك الجامعية بجانب التعلم الأكاديمي.
+                </li>
+              </ul>
+              
+              <!-- إضافة قسم للصور بجانب بعض -->
+              <div class="d-flex justify-content-end mt-4">
+                <img src="img/صورة.png" alt="Image 1" class="mx-2" style="width: 48%; height: auto; border-radius: 50% 0 50% 0;">
+                <img src="img/imager.jpg" alt="Image 2" class="mx-2" style="width: 48%; height: auto; border-radius: 50% 0 50% 0;">
+              </div>
+              
+            </div>
+          </section>
+          
+
+
+          <h2 class="text-end mb-4">كيفية استخدام المنصة للأعمال التطوعية</h2>
+          <div class="accordion text-end" id="volunteerGuide">
+            <div class="accordion-item">
+              <h3 class="accordion-header text-end" id="headingVolunteer">
+                <div class="d-flex justify-content-end">
+                  <!-- زر التقديم لحملة تطوعية مقترحة -->
+                  <button class="accordion-button collapsed text-end" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePropose" aria-expanded="false" aria-controls="collapsePropose" style="background-color: white; color: #003366; border: 1px solid #003366; direction: rtl;">
+                    تقديم حملة تطوعية مقترحة
+                  </button>
+                  <!-- زر التسجيل في حملة تطوعية -->
+                  <button class="accordion-button collapsed text-end ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRegister" aria-expanded="false" aria-controls="collapseRegister" style="background-color: white; color: #003366; border: 1px solid #003366; direction: rtl;">
+                    التسجيل في حملة تطوعية
+                  </button>
+                </div>
+              </h3>
+          
+              <!-- قسم تقديم الحملة التطوعية المقترحة -->
+              <div id="collapsePropose" class="accordion-collapse collapse" aria-labelledby="headingVolunteer" data-bs-parent="#volunteerGuide">
+                <div class="accordion-body text-end" style="background-color: #ffffff; border: 2px solid #003366; border-radius: 8px; padding: 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                  <ul style="list-style-type: none; padding: 0; margin: 0; font-size: 16px;">
+                    <li style="margin-bottom: 10px;">قم بتسجيل الدخول إلى المنصة باستخدام حسابك الجامعي</li>
+                    <li style="margin-bottom: 10px;">انتقل إلى قسم <strong>الأعمال التطوعية</strong></li>
+                    <li style="margin-bottom: 10px;">اضغط على خيار <strong>تقديم حملة مقترحة</strong></li>
+                    <li style="margin-bottom: 10px;">قم بتعبئة النموذج بالمعلومات المطلوبة عن الحملة التطوعية</li>
+                    <li style="margin-bottom: 10px;">أرسل طلبك للمراجعة</li>
+                    <li>ستتم مراجعة الحملة المقترحة من قبل الإدارة وسيتم إشعارك إذا تم قبولها.</li>
+                  </ul>
+                </div>
+              </div>
+          
+              <!-- قسم التسجيل في حملة تطوعية -->
+              <div id="collapseRegister" class="accordion-collapse collapse" aria-labelledby="headingVolunteer" data-bs-parent="#volunteerGuide">
+                <div class="accordion-body text-end" style="background-color: #ffffff; border: 2px solid #003366; border-radius: 8px; padding: 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                  <ul style="list-style-type: none; padding: 0; margin: 0; font-size: 16px;">
+                    <li style="margin-bottom: 10px;">قم بتسجيل الدخول إلى المنصة باستخدام حسابك الجامعي</li>
+                    <li style="margin-bottom: 10px;">انتقل إلى قسم <strong>الأعمال التطوعية</strong></li>
+                    <li style="margin-bottom: 10px;">اضغط على خيار <strong>التسجيل في حملة تطوعية</strong></li>
+                    <li style="margin-bottom: 10px;">استعرض الحملات المتاحة</li>
+                    <li style="margin-bottom: 10px;">اختر الحملة التي ترغب في الانضمام إليها</li>
+                    <li>أرسل طلبك للانضمام إلى الحملة</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <section class="py-5 text-center">
+            <div class="container">
+              <!-- العنوان مع الأيقونة -->
+              <div class="d-flex align-items-center justify-content-center mb-4">
+                <i class="bi bi-person-fill" style="font-size: 3rem; color: #003366; margin-left: 10px;"></i>
+                <h2 class="text-primary text-center" style="color: black !important; background-color: white; padding: 5px 15px; border-radius: 8px;">
+                    سجل الآن لتكون جزءًا من عملية التغيير وصنع القرار داخل الجامعة
+                  </h2>
+                  
+              </div>
+          
+              <!-- التعداد -->
+              <ul class="text-end list-unstyled" style="font-size: 1.2rem; line-height: 1.8;">
+                <li class="mb-2" style="direction: rtl;">
+                  <strong style="background: linear-gradient(135deg, #003366 25%, #ADD8E6 25%, #ADD8E6 50%, #003366 50%, #003366 75%, #ADD8E6 75%); -webkit-background-clip: text; color: transparent;">
+                    1.
+                  </strong> العمل التطوعي يعزز مهارات القيادة والتواصل ويساعدك في تطوير شخصيتك.
+                </li>
+                <li class="mb-2" style="direction: rtl;">
+                  <strong style="background: linear-gradient(135deg, #003366 25%, #ADD8E6 25%, #ADD8E6 50%, #003366 50%, #003366 75%, #ADD8E6 75%); -webkit-background-clip: text; color: transparent;">
+                    2.
+                  </strong> يوفر لك فرصة للتفاعل مع الطلاب من مختلف التخصصات.
+                </li>
+                <li class="mb-2" style="direction: rtl;">
+                  <strong style="background: linear-gradient(135deg, #003366 25%, #ADD8E6 25%, #ADD8E6 50%, #003366 50%, #003366 75%, #ADD8E6 75%); -webkit-background-clip: text; color: transparent;">
+                    3.
+                  </strong> العمل التطوعي يزيد من فرصك المهنية ويساعدك في بناء شبكة علاقات قوية.
+                </li>
+                <li class="mb-2" style="direction: rtl;">
+                  <strong style="background: linear-gradient(135deg, #003366 25%, #ADD8E6 25%, #ADD8E6 50%, #003366 50%, #003366 75%, #ADD8E6 75%); -webkit-background-clip: text; color: transparent;">
+                    4.
+                  </strong> يتيح لك المساهمة في تحسين بيئة الجامعة ومجتمعها الطلابي.
+                </li>
+                <li class="mb-2" style="direction: rtl;">
+                  <strong style="background: linear-gradient(135deg, #003366 25%, #ADD8E6 25%, #ADD8E6 50%, #003366 50%, #003366 75%, #ADD8E6 75%); -webkit-background-clip: text; color: transparent;">
+                    5.
+                  </strong> المشاركة في حملات تطوعية تتيح لك التفاعل مع الأنشطة المختلفة وزيادة الوعي المجتمعي.
+                </li>
+              </ul>
+          
+              <!-- إضافة قسم للصور بجانب بعض -->
+              <div class="d-flex justify-content-end mt-4">
+                <img src="img/imag.jpg" alt="Image 1" class="mx-2" style="width: 48%; height: auto; border-radius: 30% 70% 30% 70%; object-fit: cover;">
+                <img src="img/اعمال تطوعيه2.jpg" alt="Image 2" class="mx-2" style="width: 48%; height: auto; border-radius: 50% 0 50% 0;">
+              </div>
+            </div>
+          </section>
+          
+
+
+   
+    
+
+
+
+
+  <!-- Footer Start -->
+  <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-white mb-3"> روابط</h4>
+                <a class="btn btn-link" href="">معلومات عنا</a>
+                <a class="btn btn-link" href="">تواصل معنا </a>
+                <a class="btn btn-link" href=""> سياسة الخصوصية</a>
+                
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-white mb-3">اتصال</h4>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i> <a href="https://maps.app.goo.gl/bo3pFexbQNsy73328">جامعه الزرقاء </a></p>
+                <p class="mb-2" phone="053821100"><i class="fa fa-phone-alt me-3"></i><a href="tel:053821100">053821100</a></p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i> <a href="mailto:https://outlook.office.com/mail/inbox">البريد الالكتروني</a ></p>
+                <div class="d-flex pt-2">
+
+
+                    <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/News.Zu?mibextid=ZbWKwL"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://youtube.com/@zarqaauniversity6908?feature=shared"><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://www.linkedin.com/school/zarqa-university/"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-white mb-3">المعرض</h4>
+                <div class="row g-2 pt-2">
+                    <div class="col-4">
+                        <img class="img-fluid" style="height: 100px; object-fit: cover;" src="img/file.jfif" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid" style="height: 100px; object-fit: cover;" src="img/تنزيل (1).jfif" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid" style="height: 100px; object-fit: cover;" src="img/تنزيل (2).jfif" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid" style="height: 100px; object-fit: cover;" src="img/تنزيل (3).jfif" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid" style="height: 100px; object-fit: cover;" src="img/تنزيل.jfif" alt="">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid" style="height: 100px; object-fit: cover;" src="img/course-1.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            
+
+
+
+
+
+
+
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-white mb-4">النشرة الإخبارية</h4>
+                <p class="text-light mb-4">انضم إلى نشرتنا الإخبارية لتبقى على اطلاع دائم بأحدث الأخبار والمبادرات الطلابية والحملات التطوعية في جامعة الزرقاء.</p>
+                <div class="position-relative mx-auto" style="max-width: 400px;">
+                    <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email" placeholder="البريد الإلكتروني الخاص بك" aria-label="Email">
+                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">اشترك الآن</button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="container">
+        <div class="copyright text-end">
+            <div class="row">
+                <div class="col-md-12 mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="#">جامعة الزرقاء</a>، جميع الحقوق محفوظة.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+
+    <!-- Team Start -->
+
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+      const universityNumber = localStorage.getItem("universityNumber");
+  
+      // تحديد مكان القائمة لتغييرها مباشرة
+      const navBarContainer = document.querySelector(".navbar-nav");
+  
+      // التحقق من حالة المستخدم
+      if (universityNumber) {
+          console.log("عرض قائمة البروفايل وإخفاء زر تسجيل الدخول");
+  
+          // استبدال زر تسجيل الدخول بأيقونة البروفايل
+          navBarContainer.innerHTML = `
+          
+  
+      <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav ms-auto p-4 p-lg-0">
+              <a href="contact.html" class="nav-item nav-link" style="color: black;">تواصل معنا</a>
+  
+              <div class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="color: black;">حول الانتخابات</a>
+                  <div class="dropdown-menu fade-down m-0">
+                      <a href="Vote.html" class="dropdown-item" style="color: black;">انتخب</a>
+                      <a href="form_elections.html" class="dropdown-item" style="color: black;">ترشيح للانتخابات</a>
+                      <a href="Result.html" class="dropdown-item" style="color: black;">النتائج</a>
+                  </div>
+              </div>
+  
+              <div class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="color: black;">حول الأعمال التطوعية</a>
+                  <div class="dropdown-menu fade-down m-0">
+                      <a href="Volunteer_campaigns.html" class="dropdown-item" style="color: black;">الحملات التطوعية</a>
+                      <a href="form_Volunteer.html" class="dropdown-item" style="color: black;">تقديم لحملة تطوعية</a>
+                  </div>
+              </div>
+  
+              <a href="about.html" class="nav-item nav-link" style="color: black;">معلومات عنا</a>
+              <a href="index.html" class="nav-item nav-link active" style="color: black;">الصفحة الرئيسية</a>
+              
+              <div class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #003366;">
+                      <i class="fa fa-user-circle fa-2x"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                      <li><a class="dropdown-item" href="profile.html">الملف الشخصي</a></li>
+                      <li><a class="dropdown-item" href="#" id="logout">تسجيل الخروج</a></li>
+                  </ul>
+              </div>
+          `;
+  
+          // إضافة مستمع لزر تسجيل الخروج
+          document.getElementById("logout").addEventListener("click", () => {
+              localStorage.removeItem("universityNumber");
+              Swal.fire({
+                  title: "تم تسجيل الخروج",
+                  text: "تم تسجيل الخروج بنجاح.",
+                  icon: "success",
+                  confirmButtonText: "حسناً"
+              }).then(() => {
+                  window.location.href = "login.html";
+              });
+          });
+      } else {
+          console.log("عرض زر تسجيل الدخول");
+  
+          // استبدال قائمة البروفايل بزر تسجيل الدخول
+          navBarContainer.innerHTML = ` 
+  
+      <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+          <div class="navbar-nav ms-auto p-4 p-lg-0">
+              <a href="contact.html" class="nav-item nav-link" style="color: black;">تواصل معنا</a>
+  
+              <div class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="color: black;">حول الانتخابات</a>
+                  <div class="dropdown-menu fade-down m-0">
+                      <a href="Vote.html" class="dropdown-item" style="color: black;">انتخب</a>
+                      <a href="form_elections.html" class="dropdown-item" style="color: black;">ترشيح للانتخابات</a>
+                      <a href="Result.html" class="dropdown-item" style="color: black;">النتائج</a>
+                  </div>
+              </div>
+  
+              <div class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="color: black;">حول الأعمال التطوعية</a>
+                  <div class="dropdown-menu fade-down m-0">
+                      <a href="Volunteer_campaigns.html" class="dropdown-item" style="color: black;">الحملات التطوعية</a>
+                      <a href="form_Volunteer.html" class="dropdown-item" style="color: black;">تقديم لحملة تطوعية</a>
+                  </div>
+              </div>
+  
+              <a href="about.html" class="nav-item nav-link" style="color: black;">معلومات عنا</a>
+              <a href="index.html" class="nav-item nav-link active" style="color: black;">الصفحة الرئيسية</a>
+              
+              <a href="login.html" class="btn py-4 px-lg-5 d-none d-lg-block" style="background: linear-gradient(to right, #ffffff, #b3c7d9); color: #003366; border: none;">
+                  تسجيل الدخول<i class="fa fa-arrow-right ms-3"></i>
+              </a>
+          `;
+      }
+  });
+  
+      
+      
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+</html>
